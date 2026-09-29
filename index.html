@@ -8,9 +8,7 @@
   <title>AI Study Assistant</title>
 
   <style>
-    * {
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; }
 
     :root {
       --bg: #f5f7fb;
@@ -29,26 +27,14 @@
 
     body {
       margin: 0;
-      font-family:
-        system-ui,
-        -apple-system,
-        BlinkMacSystemFont,
-        "Segoe UI",
-        sans-serif;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       background: var(--bg);
       color: var(--text);
       line-height: 1.5;
     }
 
-    button,
-    select,
-    textarea {
-      font: inherit;
-    }
-
-    button {
-      cursor: pointer;
-    }
+    button, select, textarea { font: inherit; }
+    button { cursor: pointer; }
 
     header {
       background: #111827;
@@ -57,7 +43,7 @@
       position: sticky;
       top: 0;
       z-index: 100;
-      box-shadow: 0 4px 18px rgba(0, 0, 0, 0.15);
+      box-shadow: 0 4px 18px rgba(0,0,0,.15);
     }
 
     .header-inner {
@@ -125,7 +111,7 @@
       margin: 0 0 8px;
       font-size: clamp(28px, 8vw, 42px);
       line-height: 1.08;
-      letter-spacing: -0.7px;
+      letter-spacing: -.7px;
     }
 
     .hero p {
@@ -176,8 +162,7 @@
       font-weight: 700;
     }
 
-    select,
-    textarea {
+    select, textarea {
       width: 100%;
       border: 1px solid #d0d5dd;
       border-radius: 13px;
@@ -197,10 +182,9 @@
       resize: vertical;
     }
 
-    select:focus,
-    textarea:focus {
+    select:focus, textarea:focus {
       border-color: var(--primary);
-      box-shadow: 0 0 0 4px rgba(79, 70, 229, 0.1);
+      box-shadow: 0 0 0 4px rgba(79,70,229,.1);
     }
 
     .primary-btn {
@@ -211,19 +195,14 @@
       background: var(--primary);
       color: white;
       font-weight: 800;
-      transition: 0.15s;
+      transition: .15s;
     }
 
-    .primary-btn:hover {
-      background: var(--primary-dark);
-    }
-
-    .primary-btn:active {
-      transform: scale(0.98);
-    }
+    .primary-btn:hover { background: var(--primary-dark); }
+    .primary-btn:active { transform: scale(.98); }
 
     .primary-btn:disabled {
-      opacity: 0.65;
+      opacity: .65;
       cursor: not-allowed;
     }
 
@@ -236,7 +215,7 @@
 
     .quick-grid {
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
+      grid-template-columns: repeat(2,1fr);
       gap: 10px;
     }
 
@@ -247,7 +226,7 @@
       padding: 14px;
       text-align: left;
       min-height: 92px;
-      box-shadow: 0 4px 12px rgba(16, 24, 40, 0.04);
+      box-shadow: 0 4px 12px rgba(16,24,40,.04);
     }
 
     .quick-btn strong {
@@ -269,9 +248,7 @@
       border-color: #cfd4ff;
     }
 
-    .answer-card.show {
-      display: block;
-    }
+    .answer-card.show { display: block; }
 
     .answer-head {
       display: flex;
@@ -286,9 +263,9 @@
       font-weight: 800;
     }
 
-    .demo {
-      background: #f4ebff;
-      color: #6941c6;
+    .ai-live {
+      background: #ecfdf3;
+      color: var(--green);
       border-radius: 999px;
       padding: 5px 8px;
       font-size: 10px;
@@ -300,13 +277,8 @@
       font-size: 15px;
     }
 
-    .answer-content p {
-      margin: 7px 0;
-    }
-
-    .answer-content ul {
-      padding-left: 21px;
-    }
+    .answer-content p { margin: 7px 0; }
+    .answer-content ul { padding-left: 21px; }
 
     .example {
       border-left: 4px solid var(--primary);
@@ -317,9 +289,9 @@
     }
 
     .notice {
-      background: #fffaeb;
-      border: 1px solid #fedf89;
-      color: #7a2e0e;
+      background: #ecfdf3;
+      border: 1px solid #abefc6;
+      color: #067647;
       padding: 12px;
       border-radius: 13px;
       margin-top: 12px;
@@ -338,7 +310,7 @@
     .modal-bg {
       position: fixed;
       inset: 0;
-      background: rgba(15, 23, 42, 0.58);
+      background: rgba(15,23,42,.58);
       display: none;
       align-items: flex-end;
       justify-content: center;
@@ -346,18 +318,16 @@
       padding: 12px;
     }
 
-    .modal-bg.show {
-      display: flex;
-    }
+    .modal-bg.show { display: flex; }
 
     .modal {
-      width: min(680px, 100%);
+      width: min(680px,100%);
       max-height: 88vh;
       overflow-y: auto;
       background: white;
       border-radius: 22px 22px 14px 14px;
       padding: 20px;
-      box-shadow: 0 25px 70px rgba(0, 0, 0, 0.25);
+      box-shadow: 0 25px 70px rgba(0,0,0,.25);
     }
 
     .modal-head {
@@ -367,9 +337,7 @@
       gap: 10px;
     }
 
-    .modal-head h3 {
-      margin: 0;
-    }
+    .modal-head h3 { margin: 0; }
 
     .modal-head p {
       margin: 4px 0 0;
@@ -419,10 +387,8 @@
       font-weight: 800;
     }
 
-    @media (min-width: 700px) {
-      main {
-        padding: 28px 20px 50px;
-      }
+    @media (min-width:700px) {
+      main { padding: 28px 20px 50px; }
 
       .form-grid {
         grid-template-columns: 1fr 1fr;
@@ -438,16 +404,12 @@
       }
 
       .quick-grid {
-        grid-template-columns: repeat(4, 1fr);
+        grid-template-columns: repeat(4,1fr);
       }
 
-      .modal-bg {
-        align-items: center;
-      }
+      .modal-bg { align-items: center; }
 
-      .modal {
-        border-radius: 22px;
-      }
+      .modal { border-radius: 22px; }
     }
   </style>
 </head>
@@ -456,28 +418,21 @@
 
 <header>
   <div class="header-inner">
-
     <div class="brand">
       <div class="brand-icon">🎓</div>
-
       <div>
         <h1>AI Study Assistant</h1>
         <p>Learn • Ask • Practice • Improve</p>
       </div>
     </div>
 
-    <div class="version">V1</div>
-
+    <div class="version">V2 AI</div>
   </div>
 </header>
 
-
 <main>
 
-  <!-- HERO -->
-
   <section class="hero">
-
     <h2>Your AI Study Partner</h2>
 
     <p>
@@ -487,15 +442,12 @@
 
     <div class="pills">
       <span class="pill">📚 Class-based</span>
-      <span class="pill">🤖 AI Tutor</span>
+      <span class="pill">🤖 Gemini AI Tutor</span>
       <span class="pill">📝 Quiz</span>
       <span class="pill">📱 Mobile-first</span>
     </div>
-
   </section>
 
-
-  <!-- ASK AI -->
 
   <section class="card">
 
@@ -506,69 +458,28 @@
     <div class="form-grid">
 
       <div>
-        <label for="classLevel">
-          Class / Level
-        </label>
+        <label for="classLevel">Class / Level</label>
 
         <select id="classLevel">
-
-          <option value="Upper Primary">
-            Upper Primary
-          </option>
-
-          <option value="Class 5">
-            Class 5
-          </option>
-
-          <option value="Class 6">
-            Class 6
-          </option>
-
-          <option value="Class 7">
-            Class 7
-          </option>
-
-          <option value="Class 8">
-            Class 8
-          </option>
-
-          <option value="Class 9">
-            Class 9
-          </option>
-
-          <option value="Class 10">
-            Class 10
-          </option>
-
-          <option value="Class 11">
-            Class 11
-          </option>
-
-          <option value="Class 12">
-            Class 12
-          </option>
-
-          <option value="UG / College">
-            UG / College
-          </option>
-
-          <option value="Competitive Exams">
-            Competitive Exams
-          </option>
-
+          <option value="Upper Primary">Upper Primary</option>
+          <option value="Class 5">Class 5</option>
+          <option value="Class 6">Class 6</option>
+          <option value="Class 7">Class 7</option>
+          <option value="Class 8">Class 8</option>
+          <option value="Class 9">Class 9</option>
+          <option value="Class 10">Class 10</option>
+          <option value="Class 11">Class 11</option>
+          <option value="Class 12">Class 12</option>
+          <option value="UG / College">UG / College</option>
+          <option value="Competitive Exams">Competitive Exams</option>
         </select>
-
       </div>
 
 
       <div>
-
-        <label for="subject">
-          Subject
-        </label>
+        <label for="subject">Subject</label>
 
         <select id="subject">
-
           <option>Mathematics</option>
           <option>Science</option>
           <option>English</option>
@@ -578,9 +489,7 @@
           <option>General Knowledge</option>
           <option>Economics</option>
           <option>Management</option>
-
         </select>
-
       </div>
 
 
@@ -608,10 +517,7 @@
           🤖 Ask AI
         </button>
 
-        <div
-          class="status"
-          id="status"
-        ></div>
+        <div class="status" id="status"></div>
 
       </div>
 
@@ -620,18 +526,14 @@
 
     <div class="notice">
 
-      <strong>V1 Demo:</strong>
-      The current version uses a local demo response.
-      No API key is stored in this page.
-      The real AI connection will be added through a secure
-      Cloudflare Worker in V2.
+      <strong>Live AI:</strong>
+      Your question is securely sent through the Cloudflare Worker
+      to Gemini. The Gemini API key is not stored on this webpage.
 
     </div>
 
   </section>
 
-
-  <!-- QUICK STUDY -->
 
   <section class="card">
 
@@ -641,63 +543,28 @@
 
     <div class="quick-grid">
 
-      <button
-        class="quick-btn"
-        onclick="quickAction('explain')"
-      >
+      <button class="quick-btn" onclick="quickAction('explain')">
         📖
-
         <strong>Explain</strong>
-
-        <span>
-          Understand a concept
-        </span>
-
+        <span>Understand a concept</span>
       </button>
 
-
-      <button
-        class="quick-btn"
-        onclick="quickAction('quiz')"
-      >
+      <button class="quick-btn" onclick="quickAction('quiz')">
         📝
-
         <strong>Make Quiz</strong>
-
-        <span>
-          Practice MCQs
-        </span>
-
+        <span>Practice MCQs</span>
       </button>
 
-
-      <button
-        class="quick-btn"
-        onclick="quickAction('practice')"
-      >
+      <button class="quick-btn" onclick="quickAction('practice')">
         🧠
-
         <strong>Practice</strong>
-
-        <span>
-          Try a problem
-        </span>
-
+        <span>Try a problem</span>
       </button>
 
-
-      <button
-        class="quick-btn"
-        onclick="quickAction('progress')"
-      >
+      <button class="quick-btn" onclick="quickAction('progress')">
         📊
-
         <strong>My Progress</strong>
-
-        <span>
-          Coming in V2
-        </span>
-
+        <span>Coming in V2</span>
       </button>
 
     </div>
@@ -705,12 +572,7 @@
   </section>
 
 
-  <!-- AI ANSWER -->
-
-  <section
-    class="card answer-card"
-    id="answerCard"
-  >
+  <section class="card answer-card" id="answerCard">
 
     <div class="answer-head">
 
@@ -718,23 +580,20 @@
         🤖 AI Teacher
       </div>
 
-      <span class="demo">
-        LOCAL DEMO
+      <span class="ai-live">
+        LIVE GEMINI AI
       </span>
 
     </div>
 
-    <div
-      class="answer-content"
-      id="answerContent"
-    ></div>
+    <div class="answer-content" id="answerContent"></div>
 
   </section>
 
 
   <div class="footer">
 
-    AI Study Assistant V1 •
+    AI Study Assistant V2 •
     Built for mobile learning •
     <span id="year"></span>
 
@@ -743,36 +602,18 @@
 </main>
 
 
-<!-- QUIZ MODAL -->
-
-<div
-  class="modal-bg"
-  id="quizModal"
-  onclick="closeFromBackdrop(event)"
->
+<div class="modal-bg" id="quizModal" onclick="closeFromBackdrop(event)">
 
   <div class="modal">
 
     <div class="modal-head">
 
       <div>
-
-        <h3>
-          📝 Quick Mathematics Quiz
-        </h3>
-
-        <p>
-          Sample V1 quiz
-        </p>
-
+        <h3>📝 Quick Mathematics Quiz</h3>
+        <p>Sample V1 quiz</p>
       </div>
 
-      <button
-        class="close"
-        onclick="closeQuiz()"
-      >
-        ×
-      </button>
+      <button class="close" onclick="closeQuiz()">×</button>
 
     </div>
 
@@ -781,34 +622,20 @@
 
       <div class="quiz-question">
 
-        <strong>
-          1. Which number is prime?
-        </strong>
+        <strong>1. Which number is prime?</strong>
 
         <label class="option">
-          <input
-            type="radio"
-            name="q1"
-            value="0"
-          >
+          <input type="radio" name="q1" value="0">
           9
         </label>
 
         <label class="option">
-          <input
-            type="radio"
-            name="q1"
-            value="1"
-          >
+          <input type="radio" name="q1" value="1">
           11
         </label>
 
         <label class="option">
-          <input
-            type="radio"
-            name="q1"
-            value="0"
-          >
+          <input type="radio" name="q1" value="0">
           15
         </label>
 
@@ -817,34 +644,20 @@
 
       <div class="quiz-question">
 
-        <strong>
-          2. How many factors does a prime number have?
-        </strong>
+        <strong>2. How many factors does a prime number have?</strong>
 
         <label class="option">
-          <input
-            type="radio"
-            name="q2"
-            value="0"
-          >
+          <input type="radio" name="q2" value="0">
           1
         </label>
 
         <label class="option">
-          <input
-            type="radio"
-            name="q2"
-            value="1"
-          >
+          <input type="radio" name="q2" value="1">
           2
         </label>
 
         <label class="option">
-          <input
-            type="radio"
-            name="q2"
-            value="0"
-          >
+          <input type="radio" name="q2" value="0">
           4
         </label>
 
@@ -853,34 +666,20 @@
 
       <div class="quiz-question">
 
-        <strong>
-          3. Which is NOT a prime number?
-        </strong>
+        <strong>3. Which is NOT a prime number?</strong>
 
         <label class="option">
-          <input
-            type="radio"
-            name="q3"
-            value="0"
-          >
+          <input type="radio" name="q3" value="0">
           7
         </label>
 
         <label class="option">
-          <input
-            type="radio"
-            name="q3"
-            value="0"
-          >
+          <input type="radio" name="q3" value="0">
           13
         </label>
 
         <label class="option">
-          <input
-            type="radio"
-            name="q3"
-            value="1"
-          >
+          <input type="radio" name="q3" value="1">
           21
         </label>
 
@@ -895,10 +694,7 @@
         Check Score
       </button>
 
-      <div
-        class="score"
-        id="score"
-      ></div>
+      <div class="score" id="score"></div>
 
     </form>
 
@@ -909,387 +705,421 @@
 
 <script>
 
-  const $ = id => document.getElementById(id);
+const WORKER_URL =
+  "https://ai-study-assistant.deepakmahatobist.workers.dev/";
 
 
-  $("year").textContent =
-    new Date().getFullYear();
+const $ = id => document.getElementById(id);
 
 
-  function escapeHTML(value) {
-
-    return String(value).replace(
-      /[&<>"']/g,
-
-      function(character) {
-
-        return {
-
-          "&": "&amp;",
-          "<": "&lt;",
-          ">": "&gt;",
-          '"': "&quot;",
-          "'": "&#039;"
-
-        }[character];
-
-      }
-    );
-
-  }
+$("year").textContent =
+  new Date().getFullYear();
 
 
-  function askTutor() {
+function escapeHTML(value) {
 
-    const level =
-      $("classLevel").value;
+  return String(value).replace(
+    /[&<>"']/g,
 
-    const subject =
-      $("subject").value;
+    function(character) {
 
-    const question =
-      $("question").value.trim();
-
-
-    if (!question) {
-
-      $("question").focus();
-
-      $("status").textContent =
-        "Please enter a question first.";
-
-      return;
+      return {
+        "&": "&amp;",
+        "<": "&lt;",
+        ">": "&gt;",
+        '"': "&quot;",
+        "'": "&#039;"
+      }[character];
 
     }
+  );
+
+}
 
 
-    const button =
-      $("askBtn");
+/*
+   Convert Gemini's plain text response
+   into safe, readable HTML.
+*/
 
-    button.disabled = true;
+function formatAIAnswer(text) {
 
-    button.textContent =
-      "⏳ Thinking...";
+  const safe = escapeHTML(text);
+
+  return safe
+    .replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>")
+    .replace(/\n\n/g, "</p><p>")
+    .replace(/\n/g, "<br>");
+
+}
+
+
+async function askTutor() {
+
+  const level =
+    $("classLevel").value;
+
+  const subject =
+    $("subject").value;
+
+  const question =
+    $("question").value.trim();
+
+
+  if (!question) {
+
+    $("question").focus();
 
     $("status").textContent =
-      "Preparing your answer...";
+      "Please enter a question first.";
 
-
-    setTimeout(function() {
-
-      const safeQuestion =
-        escapeHTML(question);
-
-      const safeLevel =
-        escapeHTML(level);
-
-      const safeSubject =
-        escapeHTML(subject);
-
-
-      $("answerContent").innerHTML = `
-
-        <p>
-          <strong>Question:</strong>
-          ${safeQuestion}
-        </p>
-
-        <p>
-          <strong>Level:</strong>
-          ${safeLevel}
-          &nbsp; • &nbsp;
-          <strong>Subject:</strong>
-          ${safeSubject}
-        </p>
-
-        <h4>
-          📖 Simple Explanation
-        </h4>
-
-        <p>
-          A <strong>prime number</strong>
-          is a whole number greater than 1
-          that has exactly two factors:
-          <strong>1 and the number itself</strong>.
-        </p>
-
-        <div class="example">
-
-          <strong>Example:</strong>
-
-          <br><br>
-
-          <strong>7</strong> is prime because
-          its only factors are 1 and 7.
-
-          <br><br>
-
-          <strong>8</strong> is not prime because
-          it has factors 1, 2, 4 and 8.
-
-        </div>
-
-        <h4>
-          🧠 Remember
-        </h4>
-
-        <ul>
-
-          <li>
-            1 is <strong>not</strong> a prime number.
-          </li>
-
-          <li>
-            2 is the smallest prime number.
-          </li>
-
-          <li>
-            2 is the only even prime number.
-          </li>
-
-        </ul>
-
-        <h4>
-          ✏️ Try This
-        </h4>
-
-        <p>
-          Is <strong>17</strong> a prime number?
-          Think first and then check your answer.
-        </p>
-
-      `;
-
-
-      $("answerCard")
-        .classList
-        .add("show");
-
-
-      $("answerCard")
-        .scrollIntoView({
-          behavior: "smooth",
-          block: "start"
-        });
-
-
-      button.disabled = false;
-
-      button.textContent =
-        "🤖 Ask AI";
-
-      $("status").textContent =
-        "Demo answer generated.";
-
-    }, 650);
+    return;
 
   }
 
 
-  function quickAction(action) {
+  const button =
+    $("askBtn");
 
 
-    if (action === "explain") {
+  button.disabled = true;
 
-      $("question").value = "";
-
-      $("question").focus();
-
-      $("status").textContent =
-        "Enter a topic or question to explain.";
-
-      return;
-
-    }
+  button.textContent =
+    "⏳ Thinking...";
 
 
-    if (action === "quiz") {
-
-      $("quizModal")
-        .classList
-        .add("show");
-
-      $("score").style.display =
-        "none";
-
-      $("score").textContent =
-        "";
-
-      return;
-
-    }
+  $("status").textContent =
+    "Connecting to your AI Teacher...";
 
 
-    if (action === "practice") {
+  $("answerContent").innerHTML = "";
 
-      $("question").value =
-        "Give me one practice problem on fractions and explain the solution after I try it.";
-
-      $("question").focus();
-
-      $("status").textContent =
-        "Practice question prepared.";
-
-      return;
-
-    }
+  $("answerCard")
+    .classList
+    .add("show");
 
 
-    if (action === "progress") {
+  try {
 
-      $("answerContent").innerHTML = `
+    const response =
+      await fetch(WORKER_URL, {
 
-        <h4>
-          📊 My Progress
-        </h4>
+        method: "POST",
 
-        <p>
-          Progress tracking will be added in V2.
-        </p>
+        headers: {
+          "Content-Type": "application/json"
+        },
 
-        <ul>
+        body: JSON.stringify({
 
-          <li>
-            Questions attempted
-          </li>
+          level: level,
 
-          <li>
-            Quiz scores
-          </li>
+          subject: subject,
 
-          <li>
-            Weak topics
-          </li>
+          question: question
 
-          <li>
-            Study streak
-          </li>
-
-          <li>
-            Personalized practice
-          </li>
-
-        </ul>
-
-      `;
-
-
-      $("answerCard")
-        .classList
-        .add("show");
-
-
-      $("answerCard")
-        .scrollIntoView({
-          behavior: "smooth",
-          block: "start"
-        });
-
-    }
-
-  }
-
-
-  function closeQuiz() {
-
-    $("quizModal")
-      .classList
-      .remove("show");
-
-  }
-
-
-  function closeFromBackdrop(event) {
-
-    if (
-      event.target ===
-      $("quizModal")
-    ) {
-
-      closeQuiz();
-
-    }
-
-  }
-
-
-  function checkQuiz() {
-
-    let score = 0;
-
-    let answered = 0;
-
-
-    ["q1", "q2", "q3"]
-      .forEach(function(name) {
-
-        const selected =
-          document.querySelector(
-            `input[name="${name}"]:checked`
-          );
-
-
-        if (selected) {
-
-          answered++;
-
-          score +=
-            Number(selected.value);
-
-        }
+        })
 
       });
 
 
-    const scoreBox =
-      $("score");
+    const data =
+      await response.json();
 
 
-    scoreBox.style.display =
-      "block";
+    if (!response.ok) {
 
-
-    if (answered < 3) {
-
-      scoreBox.style.color =
-        "#b54708";
-
-      scoreBox.textContent =
-        `You answered ${answered}/3. Please answer all questions.`;
-
-      return;
+      throw new Error(
+        data.error ||
+        "The AI server returned an error."
+      );
 
     }
 
 
-    scoreBox.style.color =
-      "#067647";
+    if (!data.answer) {
 
-    scoreBox.textContent =
-      `Your score: ${score}/3 🎉`;
+      throw new Error(
+        "No answer was returned by Gemini."
+      );
+
+    }
+
+
+    $("answerContent").innerHTML = `
+
+      <p>
+        <strong>Question:</strong>
+        ${escapeHTML(question)}
+      </p>
+
+      <p>
+        <strong>Level:</strong>
+        ${escapeHTML(level)}
+        &nbsp; • &nbsp;
+        <strong>Subject:</strong>
+        ${escapeHTML(subject)}
+      </p>
+
+      <h4>
+        🤖 AI Explanation
+      </h4>
+
+      <p>
+        ${formatAIAnswer(data.answer)}
+      </p>
+
+    `;
+
+
+    $("status").textContent =
+      "AI answer generated successfully.";
 
   }
 
 
-  $("question")
-    .addEventListener(
-      "keydown",
-      function(event) {
+  catch (error) {
 
-        if (
-          (event.ctrlKey ||
-           event.metaKey) &&
-          event.key === "Enter"
-        ) {
+    console.error(error);
 
-          askTutor();
 
-        }
+    $("answerContent").innerHTML = `
+
+      <h4>⚠️ Unable to get an AI answer</h4>
+
+      <p>
+        ${escapeHTML(error.message)}
+      </p>
+
+      <div class="example">
+
+        Please check that the Cloudflare Worker
+        is deployed and the Gemini API key is
+        configured correctly.
+
+      </div>
+
+    `;
+
+
+    $("status").textContent =
+      "AI connection failed.";
+
+  }
+
+
+  finally {
+
+    button.disabled = false;
+
+    button.textContent =
+      "🤖 Ask AI";
+
+  }
+
+
+  $("answerCard")
+    .scrollIntoView({
+
+      behavior: "smooth",
+
+      block: "start"
+
+    });
+
+}
+
+
+function quickAction(action) {
+
+
+  if (action === "explain") {
+
+    $("question").value = "";
+
+    $("question").focus();
+
+    $("status").textContent =
+      "Enter a topic or question to explain.";
+
+    return;
+
+  }
+
+
+  if (action === "quiz") {
+
+    $("quizModal")
+      .classList
+      .add("show");
+
+    $("score").style.display =
+      "none";
+
+    $("score").textContent =
+      "";
+
+    return;
+
+  }
+
+
+  if (action === "practice") {
+
+    $("question").value =
+      "Give me one practice problem on fractions and explain the solution after I try it.";
+
+    $("question").focus();
+
+    $("status").textContent =
+      "Practice question prepared.";
+
+    return;
+
+  }
+
+
+  if (action === "progress") {
+
+    $("answerContent").innerHTML = `
+
+      <h4>📊 My Progress</h4>
+
+      <p>
+        Progress tracking will be added in V2.
+      </p>
+
+      <ul>
+
+        <li>Questions attempted</li>
+        <li>Quiz scores</li>
+        <li>Weak topics</li>
+        <li>Study streak</li>
+        <li>Personalized practice</li>
+
+      </ul>
+
+    `;
+
+
+    $("answerCard")
+      .classList
+      .add("show");
+
+
+    $("answerCard")
+      .scrollIntoView({
+
+        behavior: "smooth",
+
+        block: "start"
+
+      });
+
+  }
+
+}
+
+
+function closeQuiz() {
+
+  $("quizModal")
+    .classList
+    .remove("show");
+
+}
+
+
+function closeFromBackdrop(event) {
+
+  if (
+    event.target === $("quizModal")
+  ) {
+
+    closeQuiz();
+
+  }
+
+}
+
+
+function checkQuiz() {
+
+  let score = 0;
+
+  let answered = 0;
+
+
+  ["q1", "q2", "q3"]
+    .forEach(function(name) {
+
+      const selected =
+        document.querySelector(
+          `input[name="${name}"]:checked`
+        );
+
+
+      if (selected) {
+
+        answered++;
+
+        score +=
+          Number(selected.value);
 
       }
-    );
+
+    });
+
+
+  const scoreBox =
+    $("score");
+
+
+  scoreBox.style.display =
+    "block";
+
+
+  if (answered < 3) {
+
+    scoreBox.style.color =
+      "#b54708";
+
+    scoreBox.textContent =
+      `You answered ${answered}/3. Please answer all questions.`;
+
+    return;
+
+  }
+
+
+  scoreBox.style.color =
+    "#067647";
+
+  scoreBox.textContent =
+    `Your score: ${score}/3 🎉`;
+
+}
+
+
+$("question")
+  .addEventListener(
+    "keydown",
+    function(event) {
+
+      if (
+        (event.ctrlKey ||
+         event.metaKey) &&
+        event.key === "Enter"
+      ) {
+
+        askTutor();
+
+      }
+
+    }
+  );
 
 </script>
 
 </body>
-  </html>
+</html>
