@@ -1,0 +1,1295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#111827">
+  <meta name="description" content="AI Study Assistant - Learn, Ask, Practice and Improve">
+  <title>AI Study Assistant</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    :root {
+      --bg: #f5f7fb;
+      --card: #ffffff;
+      --text: #111827;
+      --muted: #667085;
+      --border: #e4e7ec;
+      --primary: #4f46e5;
+      --primary-dark: #3730a3;
+      --soft: #eef2ff;
+      --green: #067647;
+      --orange: #b54708;
+      --shadow: 0 10px 30px rgba(16, 24, 40, 0.08);
+      --radius: 20px;
+    }
+
+    body {
+      margin: 0;
+      font-family:
+        system-ui,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.5;
+    }
+
+    button,
+    select,
+    textarea {
+      font: inherit;
+    }
+
+    button {
+      cursor: pointer;
+    }
+
+    header {
+      background: #111827;
+      color: white;
+      padding: 16px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 4px 18px rgba(0, 0, 0, 0.15);
+    }
+
+    .header-inner {
+      max-width: 1050px;
+      margin: auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .brand-icon {
+      width: 46px;
+      height: 46px;
+      display: grid;
+      place-items: center;
+      background: white;
+      color: var(--primary);
+      border-radius: 14px;
+      font-size: 24px;
+    }
+
+    .brand h1 {
+      margin: 0;
+      font-size: 18px;
+      line-height: 1.2;
+    }
+
+    .brand p {
+      margin: 3px 0 0;
+      color: #cbd5e1;
+      font-size: 12px;
+    }
+
+    .version {
+      background: #1f2937;
+      border: 1px solid #374151;
+      padding: 6px 9px;
+      border-radius: 999px;
+      font-size: 11px;
+      font-weight: 700;
+    }
+
+    main {
+      max-width: 1050px;
+      margin: auto;
+      padding: 18px 14px 40px;
+    }
+
+    .hero {
+      background: linear-gradient(135deg, #eef2ff, #ffffff);
+      border: 1px solid #dfe3ff;
+      border-radius: 24px;
+      padding: 24px 20px;
+      margin-bottom: 16px;
+    }
+
+    .hero h2 {
+      margin: 0 0 8px;
+      font-size: clamp(28px, 8vw, 42px);
+      line-height: 1.08;
+      letter-spacing: -0.7px;
+    }
+
+    .hero p {
+      margin: 0;
+      color: var(--muted);
+      max-width: 700px;
+    }
+
+    .pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 16px;
+    }
+
+    .pill {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 7px 10px;
+      font-size: 12px;
+      color: #344054;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 18px;
+      margin-bottom: 16px;
+    }
+
+    .section-title {
+      margin: 0 0 14px;
+      font-size: 19px;
+    }
+
+    .form-grid {
+      display: grid;
+      gap: 12px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 6px;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    select,
+    textarea {
+      width: 100%;
+      border: 1px solid #d0d5dd;
+      border-radius: 13px;
+      background: white;
+      color: var(--text);
+      outline: none;
+    }
+
+    select {
+      height: 48px;
+      padding: 0 13px;
+    }
+
+    textarea {
+      min-height: 145px;
+      padding: 13px;
+      resize: vertical;
+    }
+
+    select:focus,
+    textarea:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 4px rgba(79, 70, 229, 0.1);
+    }
+
+    .primary-btn {
+      width: 100%;
+      min-height: 49px;
+      border: 0;
+      border-radius: 13px;
+      background: var(--primary);
+      color: white;
+      font-weight: 800;
+      transition: 0.15s;
+    }
+
+    .primary-btn:hover {
+      background: var(--primary-dark);
+    }
+
+    .primary-btn:active {
+      transform: scale(0.98);
+    }
+
+    .primary-btn:disabled {
+      opacity: 0.65;
+      cursor: not-allowed;
+    }
+
+    .status {
+      min-height: 20px;
+      margin-top: 8px;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .quick-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+    }
+
+    .quick-btn {
+      border: 1px solid var(--border);
+      background: white;
+      border-radius: 14px;
+      padding: 14px;
+      text-align: left;
+      min-height: 92px;
+      box-shadow: 0 4px 12px rgba(16, 24, 40, 0.04);
+    }
+
+    .quick-btn strong {
+      display: block;
+      margin-top: 5px;
+      font-size: 14px;
+    }
+
+    .quick-btn span {
+      display: block;
+      margin-top: 3px;
+      color: var(--muted);
+      font-size: 11px;
+    }
+
+    .answer-card {
+      display: none;
+      background: #fafaff;
+      border-color: #cfd4ff;
+    }
+
+    .answer-card.show {
+      display: block;
+    }
+
+    .answer-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+
+    .ai-label {
+      color: var(--primary-dark);
+      font-weight: 800;
+    }
+
+    .demo {
+      background: #f4ebff;
+      color: #6941c6;
+      border-radius: 999px;
+      padding: 5px 8px;
+      font-size: 10px;
+      font-weight: 800;
+    }
+
+    .answer-content h4 {
+      margin: 17px 0 6px;
+      font-size: 15px;
+    }
+
+    .answer-content p {
+      margin: 7px 0;
+    }
+
+    .answer-content ul {
+      padding-left: 21px;
+    }
+
+    .example {
+      border-left: 4px solid var(--primary);
+      background: white;
+      padding: 12px 14px;
+      border-radius: 10px;
+      margin-top: 12px;
+    }
+
+    .notice {
+      background: #fffaeb;
+      border: 1px solid #fedf89;
+      color: #7a2e0e;
+      padding: 12px;
+      border-radius: 13px;
+      margin-top: 12px;
+      font-size: 12px;
+    }
+
+    .footer {
+      text-align: center;
+      color: var(--muted);
+      font-size: 12px;
+      padding: 8px 0 20px;
+    }
+
+    /* Quiz */
+
+    .modal-bg {
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.58);
+      display: none;
+      align-items: flex-end;
+      justify-content: center;
+      z-index: 200;
+      padding: 12px;
+    }
+
+    .modal-bg.show {
+      display: flex;
+    }
+
+    .modal {
+      width: min(680px, 100%);
+      max-height: 88vh;
+      overflow-y: auto;
+      background: white;
+      border-radius: 22px 22px 14px 14px;
+      padding: 20px;
+      box-shadow: 0 25px 70px rgba(0, 0, 0, 0.25);
+    }
+
+    .modal-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .modal-head h3 {
+      margin: 0;
+    }
+
+    .modal-head p {
+      margin: 4px 0 0;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .close {
+      width: 38px;
+      height: 38px;
+      border: 0;
+      border-radius: 50%;
+      background: #f2f4f7;
+      font-size: 20px;
+    }
+
+    .quiz-question {
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 14px;
+      margin: 12px 0;
+    }
+
+    .option {
+      display: block;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 10px;
+      margin-top: 8px;
+      cursor: pointer;
+      font-weight: 500;
+    }
+
+    .option input {
+      width: auto;
+      margin-right: 8px;
+    }
+
+    .score {
+      display: none;
+      margin-top: 14px;
+      padding: 14px;
+      background: #ecfdf3;
+      border: 1px solid #abefc6;
+      border-radius: 13px;
+      color: var(--green);
+      font-weight: 800;
+    }
+
+    @media (min-width: 700px) {
+      main {
+        padding: 28px 20px 50px;
+      }
+
+      .form-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .question-field {
+        grid-column: 1 / -1;
+      }
+
+      .primary-btn {
+        width: auto;
+        padding: 0 28px;
+      }
+
+      .quick-grid {
+        grid-template-columns: repeat(4, 1fr);
+      }
+
+      .modal-bg {
+        align-items: center;
+      }
+
+      .modal {
+        border-radius: 22px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <div class="header-inner">
+
+    <div class="brand">
+      <div class="brand-icon">🎓</div>
+
+      <div>
+        <h1>AI Study Assistant</h1>
+        <p>Learn • Ask • Practice • Improve</p>
+      </div>
+    </div>
+
+    <div class="version">V1</div>
+
+  </div>
+</header>
+
+
+<main>
+
+  <!-- HERO -->
+
+  <section class="hero">
+
+    <h2>Your AI Study Partner</h2>
+
+    <p>
+      Ask questions, understand difficult concepts,
+      practice problems and improve your learning.
+    </p>
+
+    <div class="pills">
+      <span class="pill">📚 Class-based</span>
+      <span class="pill">🤖 AI Tutor</span>
+      <span class="pill">📝 Quiz</span>
+      <span class="pill">📱 Mobile-first</span>
+    </div>
+
+  </section>
+
+
+  <!-- ASK AI -->
+
+  <section class="card">
+
+    <h3 class="section-title">
+      🤖 Ask Your AI Teacher
+    </h3>
+
+    <div class="form-grid">
+
+      <div>
+        <label for="classLevel">
+          Class / Level
+        </label>
+
+        <select id="classLevel">
+
+          <option value="Upper Primary">
+            Upper Primary
+          </option>
+
+          <option value="Class 5">
+            Class 5
+          </option>
+
+          <option value="Class 6">
+            Class 6
+          </option>
+
+          <option value="Class 7">
+            Class 7
+          </option>
+
+          <option value="Class 8">
+            Class 8
+          </option>
+
+          <option value="Class 9">
+            Class 9
+          </option>
+
+          <option value="Class 10">
+            Class 10
+          </option>
+
+          <option value="Class 11">
+            Class 11
+          </option>
+
+          <option value="Class 12">
+            Class 12
+          </option>
+
+          <option value="UG / College">
+            UG / College
+          </option>
+
+          <option value="Competitive Exams">
+            Competitive Exams
+          </option>
+
+        </select>
+
+      </div>
+
+
+      <div>
+
+        <label for="subject">
+          Subject
+        </label>
+
+        <select id="subject">
+
+          <option>Mathematics</option>
+          <option>Science</option>
+          <option>English</option>
+          <option>Bengali</option>
+          <option>History</option>
+          <option>Geography</option>
+          <option>General Knowledge</option>
+          <option>Economics</option>
+          <option>Management</option>
+
+        </select>
+
+      </div>
+
+
+      <div class="question-field">
+
+        <label for="question">
+          Your Question
+        </label>
+
+        <textarea
+          id="question"
+          placeholder="Example: What is a prime number? Explain it simply with examples."
+        ></textarea>
+
+      </div>
+
+
+      <div>
+
+        <button
+          class="primary-btn"
+          id="askBtn"
+          onclick="askTutor()"
+        >
+          🤖 Ask AI
+        </button>
+
+        <div
+          class="status"
+          id="status"
+        ></div>
+
+      </div>
+
+    </div>
+
+
+    <div class="notice">
+
+      <strong>V1 Demo:</strong>
+      The current version uses a local demo response.
+      No API key is stored in this page.
+      The real AI connection will be added through a secure
+      Cloudflare Worker in V2.
+
+    </div>
+
+  </section>
+
+
+  <!-- QUICK STUDY -->
+
+  <section class="card">
+
+    <h3 class="section-title">
+      ⚡ Quick Study
+    </h3>
+
+    <div class="quick-grid">
+
+      <button
+        class="quick-btn"
+        onclick="quickAction('explain')"
+      >
+        📖
+
+        <strong>Explain</strong>
+
+        <span>
+          Understand a concept
+        </span>
+
+      </button>
+
+
+      <button
+        class="quick-btn"
+        onclick="quickAction('quiz')"
+      >
+        📝
+
+        <strong>Make Quiz</strong>
+
+        <span>
+          Practice MCQs
+        </span>
+
+      </button>
+
+
+      <button
+        class="quick-btn"
+        onclick="quickAction('practice')"
+      >
+        🧠
+
+        <strong>Practice</strong>
+
+        <span>
+          Try a problem
+        </span>
+
+      </button>
+
+
+      <button
+        class="quick-btn"
+        onclick="quickAction('progress')"
+      >
+        📊
+
+        <strong>My Progress</strong>
+
+        <span>
+          Coming in V2
+        </span>
+
+      </button>
+
+    </div>
+
+  </section>
+
+
+  <!-- AI ANSWER -->
+
+  <section
+    class="card answer-card"
+    id="answerCard"
+  >
+
+    <div class="answer-head">
+
+      <div class="ai-label">
+        🤖 AI Teacher
+      </div>
+
+      <span class="demo">
+        LOCAL DEMO
+      </span>
+
+    </div>
+
+    <div
+      class="answer-content"
+      id="answerContent"
+    ></div>
+
+  </section>
+
+
+  <div class="footer">
+
+    AI Study Assistant V1 •
+    Built for mobile learning •
+    <span id="year"></span>
+
+  </div>
+
+</main>
+
+
+<!-- QUIZ MODAL -->
+
+<div
+  class="modal-bg"
+  id="quizModal"
+  onclick="closeFromBackdrop(event)"
+>
+
+  <div class="modal">
+
+    <div class="modal-head">
+
+      <div>
+
+        <h3>
+          📝 Quick Mathematics Quiz
+        </h3>
+
+        <p>
+          Sample V1 quiz
+        </p>
+
+      </div>
+
+      <button
+        class="close"
+        onclick="closeQuiz()"
+      >
+        ×
+      </button>
+
+    </div>
+
+
+    <form id="quizForm">
+
+      <div class="quiz-question">
+
+        <strong>
+          1. Which number is prime?
+        </strong>
+
+        <label class="option">
+          <input
+            type="radio"
+            name="q1"
+            value="0"
+          >
+          9
+        </label>
+
+        <label class="option">
+          <input
+            type="radio"
+            name="q1"
+            value="1"
+          >
+          11
+        </label>
+
+        <label class="option">
+          <input
+            type="radio"
+            name="q1"
+            value="0"
+          >
+          15
+        </label>
+
+      </div>
+
+
+      <div class="quiz-question">
+
+        <strong>
+          2. How many factors does a prime number have?
+        </strong>
+
+        <label class="option">
+          <input
+            type="radio"
+            name="q2"
+            value="0"
+          >
+          1
+        </label>
+
+        <label class="option">
+          <input
+            type="radio"
+            name="q2"
+            value="1"
+          >
+          2
+        </label>
+
+        <label class="option">
+          <input
+            type="radio"
+            name="q2"
+            value="0"
+          >
+          4
+        </label>
+
+      </div>
+
+
+      <div class="quiz-question">
+
+        <strong>
+          3. Which is NOT a prime number?
+        </strong>
+
+        <label class="option">
+          <input
+            type="radio"
+            name="q3"
+            value="0"
+          >
+          7
+        </label>
+
+        <label class="option">
+          <input
+            type="radio"
+            name="q3"
+            value="0"
+          >
+          13
+        </label>
+
+        <label class="option">
+          <input
+            type="radio"
+            name="q3"
+            value="1"
+          >
+          21
+        </label>
+
+      </div>
+
+
+      <button
+        type="button"
+        class="primary-btn"
+        onclick="checkQuiz()"
+      >
+        Check Score
+      </button>
+
+      <div
+        class="score"
+        id="score"
+      ></div>
+
+    </form>
+
+  </div>
+
+</div>
+
+
+<script>
+
+  const $ = id => document.getElementById(id);
+
+
+  $("year").textContent =
+    new Date().getFullYear();
+
+
+  function escapeHTML(value) {
+
+    return String(value).replace(
+      /[&<>"']/g,
+
+      function(character) {
+
+        return {
+
+          "&": "&amp;",
+          "<": "&lt;",
+          ">": "&gt;",
+          '"': "&quot;",
+          "'": "&#039;"
+
+        }[character];
+
+      }
+    );
+
+  }
+
+
+  function askTutor() {
+
+    const level =
+      $("classLevel").value;
+
+    const subject =
+      $("subject").value;
+
+    const question =
+      $("question").value.trim();
+
+
+    if (!question) {
+
+      $("question").focus();
+
+      $("status").textContent =
+        "Please enter a question first.";
+
+      return;
+
+    }
+
+
+    const button =
+      $("askBtn");
+
+    button.disabled = true;
+
+    button.textContent =
+      "⏳ Thinking...";
+
+    $("status").textContent =
+      "Preparing your answer...";
+
+
+    setTimeout(function() {
+
+      const safeQuestion =
+        escapeHTML(question);
+
+      const safeLevel =
+        escapeHTML(level);
+
+      const safeSubject =
+        escapeHTML(subject);
+
+
+      $("answerContent").innerHTML = `
+
+        <p>
+          <strong>Question:</strong>
+          ${safeQuestion}
+        </p>
+
+        <p>
+          <strong>Level:</strong>
+          ${safeLevel}
+          &nbsp; • &nbsp;
+          <strong>Subject:</strong>
+          ${safeSubject}
+        </p>
+
+        <h4>
+          📖 Simple Explanation
+        </h4>
+
+        <p>
+          A <strong>prime number</strong>
+          is a whole number greater than 1
+          that has exactly two factors:
+          <strong>1 and the number itself</strong>.
+        </p>
+
+        <div class="example">
+
+          <strong>Example:</strong>
+
+          <br><br>
+
+          <strong>7</strong> is prime because
+          its only factors are 1 and 7.
+
+          <br><br>
+
+          <strong>8</strong> is not prime because
+          it has factors 1, 2, 4 and 8.
+
+        </div>
+
+        <h4>
+          🧠 Remember
+        </h4>
+
+        <ul>
+
+          <li>
+            1 is <strong>not</strong> a prime number.
+          </li>
+
+          <li>
+            2 is the smallest prime number.
+          </li>
+
+          <li>
+            2 is the only even prime number.
+          </li>
+
+        </ul>
+
+        <h4>
+          ✏️ Try This
+        </h4>
+
+        <p>
+          Is <strong>17</strong> a prime number?
+          Think first and then check your answer.
+        </p>
+
+      `;
+
+
+      $("answerCard")
+        .classList
+        .add("show");
+
+
+      $("answerCard")
+        .scrollIntoView({
+          behavior: "smooth",
+          block: "start"
+        });
+
+
+      button.disabled = false;
+
+      button.textContent =
+        "🤖 Ask AI";
+
+      $("status").textContent =
+        "Demo answer generated.";
+
+    }, 650);
+
+  }
+
+
+  function quickAction(action) {
+
+
+    if (action === "explain") {
+
+      $("question").value = "";
+
+      $("question").focus();
+
+      $("status").textContent =
+        "Enter a topic or question to explain.";
+
+      return;
+
+    }
+
+
+    if (action === "quiz") {
+
+      $("quizModal")
+        .classList
+        .add("show");
+
+      $("score").style.display =
+        "none";
+
+      $("score").textContent =
+        "";
+
+      return;
+
+    }
+
+
+    if (action === "practice") {
+
+      $("question").value =
+        "Give me one practice problem on fractions and explain the solution after I try it.";
+
+      $("question").focus();
+
+      $("status").textContent =
+        "Practice question prepared.";
+
+      return;
+
+    }
+
+
+    if (action === "progress") {
+
+      $("answerContent").innerHTML = `
+
+        <h4>
+          📊 My Progress
+        </h4>
+
+        <p>
+          Progress tracking will be added in V2.
+        </p>
+
+        <ul>
+
+          <li>
+            Questions attempted
+          </li>
+
+          <li>
+            Quiz scores
+          </li>
+
+          <li>
+            Weak topics
+          </li>
+
+          <li>
+            Study streak
+          </li>
+
+          <li>
+            Personalized practice
+          </li>
+
+        </ul>
+
+      `;
+
+
+      $("answerCard")
+        .classList
+        .add("show");
+
+
+      $("answerCard")
+        .scrollIntoView({
+          behavior: "smooth",
+          block: "start"
+        });
+
+    }
+
+  }
+
+
+  function closeQuiz() {
+
+    $("quizModal")
+      .classList
+      .remove("show");
+
+  }
+
+
+  function closeFromBackdrop(event) {
+
+    if (
+      event.target ===
+      $("quizModal")
+    ) {
+
+      closeQuiz();
+
+    }
+
+  }
+
+
+  function checkQuiz() {
+
+    let score = 0;
+
+    let answered = 0;
+
+
+    ["q1", "q2", "q3"]
+      .forEach(function(name) {
+
+        const selected =
+          document.querySelector(
+            `input[name="${name}"]:checked`
+          );
+
+
+        if (selected) {
+
+          answered++;
+
+          score +=
+            Number(selected.value);
+
+        }
+
+      });
+
+
+    const scoreBox =
+      $("score");
+
+
+    scoreBox.style.display =
+      "block";
+
+
+    if (answered < 3) {
+
+      scoreBox.style.color =
+        "#b54708";
+
+      scoreBox.textContent =
+        `You answered ${answered}/3. Please answer all questions.`;
+
+      return;
+
+    }
+
+
+    scoreBox.style.color =
+      "#067647";
+
+    scoreBox.textContent =
+      `Your score: ${score}/3 🎉`;
+
+  }
+
+
+  $("question")
+    .addEventListener(
+      "keydown",
+      function(event) {
+
+        if (
+          (event.ctrlKey ||
+           event.metaKey) &&
+          event.key === "Enter"
+        ) {
+
+          askTutor();
+
+        }
+
+      }
+    );
+
+</script>
+
+</body>
+  </html>
